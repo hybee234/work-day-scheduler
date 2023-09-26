@@ -11,17 +11,10 @@ var workDayArray = [
   {id: "17", task: ""},
 ]
 
-//Current hour in 24 hour format
-const currentHour = (new Date().getHours()+12);    
+//Current hour in 24 hour format parsed as an integer to be compatible with if/else logic in  function assignClass ()
+var currentHour = parseInt(dayjs().format("HH"));     //format("HH") requests only the hours, capital HH is for 24 hour time (2 digit)
+//var currentHour = parseInt(dayjs("2023-09-27 03:00:00 PM").format("HH"));   //If needed this is the format to assign date and time
 console.log ("Current hour: " + (currentHour));
-console.log ("Format 'h' " + dayjs().format('h'))
-
-var a = dayjs().hour()+7
-console.log("Hour test " + a)
-
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 
 $(function () {
 
@@ -110,38 +103,26 @@ function renderTask() {
 //--------------------------------//
 function assignClass () {
   console.log("")
-  console.log("> assignCLass() Called") 
-   // console.log($('#workDay').children().eq(0))
-  console.log ("Value of a is: " + a)
-    for (var i=9; i<17; i++) {
-     if (i < a) {
-      console.log ("i< a, no action");
-     } else if (i=a) {
-      $('#workDay').children().eq(i).addClass('present');
-     }
-     // else if (i > a) {
-     // $('#workDay').children().eq(i).addClass('future');
-    };
-  };     
-      
+  console.log("> assignClass() Called") 
+  //console.log ("Value of a is: " + a)
   
-
-
-
-
-
-
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-
-
-    // Assign style to the button
-//[HL]     letterBtn.addClass('letter-button btn btn-info');
-
+  for (var i = 9; i < 18; i++) {            // For loop between i=9 nd 18 (representing hours of the work day)
+    if (i < currentHour) {                            // If past hour then no action all hours have default class of "past"
+      console.log ("i < a, no action. i=" +i);
+    } else if (i === currentHour) {
+    $('#hour-'+[i]).addClass('present');
+    console.log ("i === a, set to present. i=" + i);  //If current hour - add class "present", css to style
+    }
+     else if (i > currentHour) {                      //If future hour - add class "future", css to style
+     $('#hour-'+[i]).addClass('future');
+     console.log ("i > a, set to future. i=" + i);  
+    } else {
+      console.log (i + " slipped through?")           //For troubleshooting, to catch any hours that slip through
+    }
+    ;
+    
+  };     
+};      
 
 //------------------------------------------------------------------//
 //-- Render Today's Date in header paragraph with ID 'currentDay' --//
@@ -153,10 +134,16 @@ $('#currentDay').text(today.format('dddd, MMM D, YYYY'));
 //-- Render Current Time in header paragraph with ID 'currentTime' --//
 //-------------------------------------------------------------------//
 // [HL] Not a requirement of this challenge
-var now = dayjs();
-$('#currentTime').text(now.format('h:mm:ss A'));
+//var now = dayjs();
+//$('#currentTime').text(now.format('h:mm:ss A'));
 
 retrieveStorage();
 assignClass();
 });
 
+// For Hy
+// Array is not required ...
+// Readme
+// Screenshots
+// Comments
+// Console.log
