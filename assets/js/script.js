@@ -1,10 +1,10 @@
 $(function () {
   var workDayEl = $("#workDay");  //Target container for all work hours and tasks
   var workDayArray = [];
-  
+
   //Current hour in 24 hour format parsed as an integer to be compatible with if/else logic in function assignClass ()
-  //var currentHour = parseInt(dayjs().format("HH"));     //format("HH") requests only the hours, capital HH is for 24 hour time (2 digit)
-  var currentHour = parseInt(dayjs("2023-09-27 02:00:00 PM").format("HH"));   //Use this to define the time in the process of troubleshooting
+  var currentHour = parseInt(dayjs().format("HH"));     //format("HH") requests only the hours, capital HH is for 24 hour time (2 digit)
+  //var currentHour = parseInt(dayjs("2023-09-27 02:00:00 PM").format("HH"));   //Use this to define the time in the process of troubleshooting
   console.log ("Current hour: " + (currentHour));
 
 //------------------------------------------//
@@ -72,7 +72,7 @@ function retrieveStorage() {
 
   if (workDayArray.length === 0) {                              // If workDayArray.length is zero then it is empty/null
     console.log("  workDayArray.length === 0. Creating array placeholders to prevent errors") 
-    workDayArray = [                                            // Create workDayArray as placeaholder for data (application will error out without placeholders)
+    workDayArray = [                                            // Create workDayArray as placeholder for data (application will error out without placeholders)
       {id: "9", task: ""},
       {id: "10", task: ""},
       {id: "11", task: ""},
@@ -83,6 +83,7 @@ function retrieveStorage() {
       {id: "16", task: ""},
       {id: "17", task: ""},  
     ];
+
     console.log ("  Pushing updated workDayArray to local storage. Key = 'WorkDayArrayTasks'")
     localStorage.setItem("WorkDayArrayTasks", JSON.stringify(workDayArray));   //Then push workDayArray into local storage under key "WorkDayArrayTasks"
   };
