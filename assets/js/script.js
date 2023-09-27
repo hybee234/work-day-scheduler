@@ -1,10 +1,10 @@
 $(function () {
   var workDayEl = $("#workDay");  //Target container for all work hours and tasks
   var workDayArray = [];
-  
+
   //Current hour in 24 hour format parsed as an integer to be compatible with if/else logic in function assignClass ()
-  //var currentHour = parseInt(dayjs().format("HH"));     //format("HH") requests only the hours, capital HH is for 24 hour time (2 digit)
-  var currentHour = parseInt(dayjs("2023-09-27 02:00:00 PM").format("HH"));   //Use this to define the time in the process of troubleshooting
+  var currentHour = parseInt(dayjs().format("HH"));     //format("HH") requests only the hours, capital HH is for 24 hour time (2 digit)
+  //var currentHour = parseInt(dayjs("2023-09-27 02:00:00 PM").format("HH"));   //Use this to define the time in the process of troubleshooting
   console.log ("Current hour: " + (currentHour));
 
 //------------------------------------------//
@@ -58,35 +58,33 @@ function submitStorage() {
   return;
 };
 
-//----------------------------------------------------------------------------------//
-//- Retrieve workDayArray object array from local storage under key "WorkDayArray" -//
-//----------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------//
+//- Retrieve workDayArray object array from local storage under key "WorkDayArrayTask" -//
+//--------------------------------------------------------------------------------------//
 function retrieveStorage() {
   console.log("");
   console.log("> retrieveStorage() Called"); 
-  //Retrieve Array from local storage if doesn't exist then set as blank array
-  //workDayArray = JSON.parse(localStorage.getItem("WorkDayArray")) ?? [];
-  workDayArray = JSON.parse(localStorage.getItem("WorkDayArrayTasks")) ?? [] ;
-  console.log("  workDayArray from Local Storage");
-  console.log (workDayArray);                                   // What does workDayArray look like before checking for null value?
-
-  if (workDayArray.length === 0) {                              // If workDayArray.length is zero then it is empty/null
-    console.log("  workDayArray.length === 0. Creating array placeholders to prevent errors") 
-    workDayArray = [                                            // Create workDayArray as placeaholder for data (application will error out without placeholders)
-      {id: "9", task: ""},
-      {id: "10", task: ""},
-      {id: "11", task: ""},
-      {id: "12", task: ""},
-      {id: "13", task: ""},
-      {id: "14", task: ""},
-      {id: "15", task: ""},
-      {id: "16", task: ""},
-      {id: "17", task: ""},  
-    ];
-    console.log ("  Pushing updated workDayArray to local storage. Key = 'WorkDayArrayTasks'")
+  workDayArray = JSON.parse(localStorage.getItem("WorkDayArrayTasks")) ?? [] ; //Retrieve Array from local storage if doesn't exist then set as blank array
+  
+  if (workDayArray.length === 0) {                              // If workDayArray.length is zero then this will result in errors as the application expects placeholders for each hour
+    console.log("    workDayArray.length is zero. Creating array placeholders to prevent errors") 
+    workDayArray = [                                            // Create workDayArray as placeholder for data (application will error out without placeholders)
+      {id: "9AM", task: ""},                                    // Note that the ID value in the array isn't used in any part of this application
+      {id: "10AM", task: ""},
+      {id: "11AM", task: ""},
+      {id: "12PM", task: ""},
+      {id: "1PM", task: ""},
+      {id: "2PM", task: ""},
+      {id: "3PM", task: ""},
+      {id: "4PM", task: ""},
+      {id: "5PM", task: ""},  
+    ]
+    console.log ("    Sacving workDayArray to local storage. Key = 'WorkDayArrayTasks'");
     localStorage.setItem("WorkDayArrayTasks", JSON.stringify(workDayArray));   //Then push workDayArray into local storage under key "WorkDayArrayTasks"
-  };
-  console.log("  workDayArray after Null Check: ");
+    } else {
+      console.log ("    workDayArray.length OK")
+    };  
+  console.log("    workDayArray after retrieveStorage():");
   console.log(workDayArray);    
   renderTask();
   return;
@@ -105,7 +103,6 @@ function renderTask() {
       hourNumber=parseInt(i)+9;                                                                  //hourNumber = the ID selector to target (e.g. hour-9, hour-10 ...)
       $("#hour-"+hourNumber).children().eq(1).val(workDayArray[i].task);                         //loop through targetting "hour-#" ID on each slot and assign workDayArray task values to "textrea"
       console.log("  i = " + i +", hourNumber = " + hourNumber + ", Task(s): " + $("#hour-"+hourNumber).children().eq(1).val());  //Console log the tasks that are being populated onto page        
-      
       // ($('#workDay').children().eq(i).children().eq(1).val(workDayArray[i].task));                                   //Only storing as example - another way of targetting textarea
       // console.log("Hour " + workDayArray[i].id + ": " + $('#workDay').children().eq(i).children().eq(1).val());      //Only storing as example - another way of targetting textarea            
     }
@@ -156,8 +153,5 @@ assignClass();
 
 
 // For Hy
-// Array is not required ...
 // Readme
 // Screenshots
-// Comments
-// Console.log
