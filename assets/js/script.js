@@ -4,7 +4,7 @@ $(function () {
 
   //Current hour in 24 hour format parsed as an integer to be compatible with if/else logic in function assignClass ()
   var currentHour = parseInt(dayjs().format("HH"));     //format("HH") requests only the hours, capital HH is for 24 hour time (2 digit)
-  //var currentHour = parseInt(dayjs("2023-09-27 02:00:00 PM").format("HH"));   //Use this to define the time in the process of troubleshooting
+  //var currentHour = parseInt(dayjs("2023-09-27 01:00:00 PM").format("HH"));   //Use this to define the time in the process of troubleshooting
   console.log ("Current hour: " + (currentHour));
 
 //------------------------------------------//
@@ -102,7 +102,7 @@ function renderTask() {
     for (var i=0; i < 9; i++) {
       hourNumber=parseInt(i)+9;                                                                  //hourNumber = the ID selector to target (e.g. hour-9, hour-10 ...)
       $("#hour-"+hourNumber).children().eq(1).val(workDayArray[i].task);                         //loop through targetting "hour-#" ID on each slot and assign workDayArray task values to "textrea"
-      console.log("  i = " + i +", hourNumber = " + hourNumber + ", Task(s): " + $("#hour-"+hourNumber).children().eq(1).val());  //Console log the tasks that are being populated onto page        
+      console.log("    i = " + i +", hourNumber = " + hourNumber + ", Task(s): " + $("#hour-"+hourNumber).children().eq(1).val());  //Console log the tasks that are being populated onto page        
       // ($('#workDay').children().eq(i).children().eq(1).val(workDayArray[i].task));                                   //Only storing as example - another way of targetting textarea
       // console.log("Hour " + workDayArray[i].id + ": " + $('#workDay').children().eq(i).children().eq(1).val());      //Only storing as example - another way of targetting textarea            
     }
