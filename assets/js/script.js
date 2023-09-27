@@ -1,22 +1,27 @@
-var workDayEl = $("#workDay");  //Target container for all work hours and tasks
-var workDayArray = [
-  {id: "9", task: ""},
-  {id: "10", task: ""},
-  {id: "11", task: ""},
-  {id: "12", task: ""},
-  {id: "13", task: ""},
-  {id: "14", task: ""},
-  {id: "15", task: ""},
-  {id: "16", task: ""},
-  {id: "17", task: ""},
-]
 
-//Current hour in 24 hour format parsed as an integer to be compatible with if/else logic in  function assignClass ()
-var currentHour = parseInt(dayjs().format("HH"));     //format("HH") requests only the hours, capital HH is for 24 hour time (2 digit)
-//var currentHour = parseInt(dayjs("2023-09-27 03:00:00 PM").format("HH"));   //If needed this is the format to assign date and time
-console.log ("Current hour: " + (currentHour));
+
+
 
 $(function () {
+
+  var workDayEl = $("#workDay");  //Target container for all work hours and tasks
+  var workDayArray = [
+    {id: "9", task: ""},
+    {id: "10", task: ""},
+    {id: "11", task: ""},
+    {id: "12", task: ""},
+    {id: "13", task: ""},
+    {id: "14", task: ""},
+    {id: "15", task: ""},
+    {id: "16", task: ""},
+    {id: "17", task: ""},
+  ]
+
+  //Current hour in 24 hour format parsed as an integer to be compatible with if/else logic in  function assignClass ()
+  var currentHour = parseInt(dayjs().format("HH"));     //format("HH") requests only the hours, capital HH is for 24 hour time (2 digit)
+  //var currentHour = parseInt(dayjs("2023-09-27 03:00:00 PM").format("HH"));   //If needed this is the format to assign date and time
+  console.log ("Current hour: " + (currentHour));
+
 
 //------------------------------------------//
 //- Listener to save tasks to workDayArray -//
