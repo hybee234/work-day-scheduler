@@ -83,7 +83,24 @@ function retrieveStorage() {
   console.log("");
   console.log("> retrieveStorage() Called"); 
 //Retrieve Array from local storage if doesn't exist then set as blank array
-  workDayArray = JSON.parse(localStorage.getItem("WorkDayArray")) ?? []; 
+
+workDayArray = JSON.parse(localStorage.getItem("WorkDayArray")) ?? [];
+if (!workDayArray) {
+  console.log("WorkDayArray Null")
+  var workDayArray = [
+    {id: "9", task: ""},
+    {id: "10", task: ""},
+    {id: "11", task: ""},
+    {id: "12", task: ""},
+    {id: "13", task: ""},
+    {id: "14", task: ""},
+    {id: "15", task: ""},
+    {id: "16", task: ""},
+    {id: "17", task: ""},  
+  ];
+  localStorage.setItem("WorkDayArray", JSON.stringify(workDayArray));
+}
+
   console.log("WorkDayArray: ");
   console.log(workDayArray);  
   renderTask();
@@ -144,7 +161,10 @@ $('#currentDay').text(today.format('dddd, MMM D, YYYY'));
 
 retrieveStorage();
 assignClass();
+
 });
+
+
 
 // For Hy
 // Array is not required ...
