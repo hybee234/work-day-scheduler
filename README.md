@@ -54,7 +54,7 @@ THEN the saved events persist
 
 The below is a screenshot of the web application's appearance
 
-![Alt text](./assets/images/screenshot.jpg)
+![Alt text](./assets/images/screenshot1.jpg)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

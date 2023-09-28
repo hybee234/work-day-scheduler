@@ -79,7 +79,7 @@ function retrieveStorage() {
       {id: "4PM", task: ""},
       {id: "5PM", task: ""},  
     ]
-    console.log ("    Sacving workDayArray to local storage. Key = 'WorkDayArrayTasks'");
+    console.log ("    Saving workDayArray to local storage. Key = 'WorkDayArrayTasks'");
     localStorage.setItem("WorkDayArrayTasks", JSON.stringify(workDayArray));   // Then push workDayArray into local storage under key "WorkDayArrayTasks"
     } else {
       console.log ("    workDayArray.length OK")
