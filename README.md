@@ -120,7 +120,7 @@ N/A
 
 
 ### Developer practice tests:
-* Validate that the application deployed at the live URL <p align="right">(<a href="#URL"> Navigate to URL</a>)</p>
+* Validate that the application deployed at the live URL (<a href="#URL">Navigate to URL</a>)
 * Validate that the webpage loaded without errors
 * Validate that GitHub URL has been submitted
 * Validate that GitHub repository contains application code
