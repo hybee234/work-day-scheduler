@@ -141,8 +141,8 @@ $('#currentDay').text(today.format('dddd, MMM D, YYYY'));
 //-------------------------------------------------------------------//
 //-- Render Current Time in header paragraph with ID 'currentTime' --//
 //-------------------------------------------------------------------//
-//var now = dayjs();
-//$('#currentTime').text(now.format('h:mm:ss A'));
+var now = dayjs();
+$('#currentTime').text(now.format('h:mm:ss A'));
 
 retrieveStorage();
 assignClass();
